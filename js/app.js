@@ -42,10 +42,9 @@
   const map = L.map("map", { zoomControl: true, scrollWheelZoom: false })
     .setView([40.7420, -73.9900], 12);
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: "abcd",
-    maxZoom: 20
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19
   }).addTo(map);
 
   function drawMarkers(day) {
@@ -157,7 +156,11 @@
         done[k] = !done[k];
         if (!done[k]) delete done[k];
         saveDone();
-        renderDay();
+        // Solo se actualiza esta tarjeta: un renderDay() completo perdería la
+        // parada seleccionada y devolvería el mapa a su encuadre inicial.
+        b.classList.toggle("on", !!done[k]);
+        b.closest(".stop").classList.toggle("is-done", !!done[k]);
+        renderProgress(day);
       });
     });
 

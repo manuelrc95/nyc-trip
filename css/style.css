@@ -171,6 +171,10 @@ a { color: var(--accent-2); }
 
 .leaflet-container { background: #0c0e13; font-family: inherit; }
 
+/* OSM solo sirve tiles claros. El filtro se aplica al panel de tiles y no al
+   de marcadores, para que los pines conserven su color real. */
+.leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.92) contrast(.9) saturate(.8); }
+
 .leaflet-popup-content-wrapper {
   background: var(--surface-2);
   color: var(--text);
