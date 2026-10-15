@@ -1,4 +1,4 @@
-# NYC — Manuel & Manu
+# NYC — Manu Rodriguez & Manu Acosta
 
 Itinerario interactivo para el viaje a Nueva York del 15 al 19 de octubre de 2026.
 

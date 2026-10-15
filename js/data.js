@@ -2,7 +2,7 @@
 
 const TRIP = {
   title: "NYC",
-  subtitle: "Manuel & Manu · 15–19 octubre 2026",
+  subtitle: "Manu Rodriguez & Manu Acosta · 15–19 octubre 2026",
   hotel: {
     name: "DoubleTree by Hilton New York Chelsea",
     address: "128 W 29th St, New York, NY 10001",
@@ -32,8 +32,8 @@ const TRIP = {
     }
   ],
   flights: [
-    { who: "Manu", when: "Lunes 19, 09:30", from: "JFK", leave: "Sale del hotel a las 6:00 (metro) o 6:30 (Uber)" },
-    { who: "Manuel", when: "Lunes 19, 17:00", from: "JFK", leave: "Sale del hotel a las 12:30" }
+    { who: "Manu Acosta", when: "Lunes 19, 09:30", from: "JFK", leave: "Sale del hotel a las 6:00 (metro) o 6:30 (Uber)" },
+    { who: "Manu Rodriguez", when: "Lunes 19, 17:00", from: "JFK", leave: "Sale del hotel a las 12:30" }
   ],
   days: [
     {
@@ -41,10 +41,10 @@ const TRIP = {
       label: "Jue 15",
       date: "2026-10-15",
       title: "Chelsea y la primera noche",
-      note: "Llegas con maletas desde el YMCA. Lo primero es soltarlas en el hotel.",
+      note: "Sales del YMCA a las 11:00 con las maletas. Lo primero es soltarlas en el hotel.",
       stops: [
         {
-          time: "10:30", cat: "logistica", cost: "free",
+          time: "11:00", cat: "logistica", cost: "free",
           title: "Dejar las maletas en el hotel",
           desc: "Tren 1 desde 66th St–Lincoln Center hasta 28th St. Te las guardan gratis en recepción aunque el check-in sea a las 4. Es lo que te libera el día entero.",
           address: "128 W 29th St",
@@ -52,7 +52,7 @@ const TRIP = {
           maps: "DoubleTree by Hilton Hotel New York Chelsea, 128 W 29th St"
         },
         {
-          time: "11:30", cat: "vista", cost: "free",
+          time: "11:45", cat: "vista", cost: "free",
           title: "Hudson Yards y el Vessel",
           desc: "Quince minutos andando al oeste. El Vessel por fuera es muy fotogénico. El mirador Edge se paga, así que lo saltamos.",
           address: "20 Hudson Yards",
@@ -60,7 +60,7 @@ const TRIP = {
           maps: "Vessel Hudson Yards New York"
         },
         {
-          time: "12:00", cat: "paseo", cost: "free",
+          time: "12:15", cat: "paseo", cost: "free",
           title: "La High Line entera",
           desc: "Un parque construido sobre vías de tren elevadas, atraviesa Chelsea por encima de la calle. Bájala de la 30 a la 14. Una hora tranquila y en octubre está preciosa.",
           address: "De W 30th St a Gansevoort St",
@@ -68,7 +68,7 @@ const TRIP = {
           maps: "The High Line New York"
         },
         {
-          time: "13:00", cat: "comida", cost: "cheap",
+          time: "13:15", cat: "comida", cost: "cheap",
           title: "Comer en Chelsea Market",
           desc: "Mercado cubierto al final de la High Line. Los Tacos No. 1 es lo más rico por lo que cuesta. Unos $15 por cabeza.",
           address: "75 9th Ave",
@@ -76,7 +76,7 @@ const TRIP = {
           maps: "Chelsea Market, 75 9th Ave New York"
         },
         {
-          time: "14:00", cat: "vista", cost: "free",
+          time: "14:15", cat: "vista", cost: "free",
           title: "Little Island",
           desc: "Parque flotante sobre el río Hudson, a cinco minutos del mercado. Gratis y con muy buenas vistas al agua. Lo tenías guardado en tus reels.",
           address: "Pier 55, Hudson River Park",
@@ -86,7 +86,7 @@ const TRIP = {
         {
           time: "16:00", cat: "logistica", cost: "free",
           title: "Check-in en el DoubleTree",
-          desc: "Vuelves andando desde el río, son veinte minutos. Manu llega sobre las cinco.",
+          desc: "Vuelves andando desde el río, son veinte minutos. Manu Acosta llega sobre las cinco.",
           address: "128 W 29th St",
           coords: [40.7470, -73.9900],
           maps: "DoubleTree by Hilton Hotel New York Chelsea, 128 W 29th St"
@@ -276,7 +276,7 @@ const TRIP = {
       label: "Dom 18",
       date: "2026-10-18",
       title: "Central Park, SoHo y el teleférico",
-      note: "Noche tranquila: Manu se levanta a las cinco y media.",
+      note: "Noche tranquila: Manu Acosta se levanta a las cinco y media.",
       stops: [
         {
           time: "10:30", cat: "paseo", cost: "free",
@@ -333,11 +333,11 @@ const TRIP = {
       label: "Lun 19",
       date: "2026-10-19",
       title: "Vuelta a casa",
-      note: "Manu madruga y Manuel tiene la mañana libre.",
+      note: "Manu Acosta madruga y Manu Rodriguez tiene la mañana libre.",
       stops: [
         {
           time: "06:00", cat: "logistica", cost: "mid",
-          title: "Manu sale hacia el JFK",
+          title: "Manu Acosta sale hacia el JFK",
           desc: "Vuelo a las 9:30, hay que estar en la terminal a las 7:30. En metro más AirTrain son 90 minutos, así que sale a las 6:00. En Uber son 45 minutos y unos $80, y entonces puede salir a las 6:30. Si el vuelo es internacional, resta una hora a todo.",
           address: "JFK",
           coords: [40.6413, -73.7781],
@@ -345,7 +345,7 @@ const TRIP = {
         },
         {
           time: "11:00", cat: "logistica", cost: "free",
-          title: "Manuel: checkout y maletas en recepción",
+          title: "Manu Rodriguez: checkout y maletas en recepción",
           desc: "Dejas la maleta guardada en el hotel y te queda hora y media libre.",
           address: "128 W 29th St",
           coords: [40.7470, -73.9900],
@@ -361,7 +361,7 @@ const TRIP = {
         },
         {
           time: "12:30", cat: "logistica", cost: "mid",
-          title: "Manuel sale hacia el JFK",
+          title: "Manu Rodriguez sale hacia el JFK",
           desc: "Recoges la maleta y te vas. Vuelo a las 17:00, en la terminal sobre las 14:00. Metro hasta Jamaica Station y AirTrain, menos de $12.",
           address: "JFK",
           coords: [40.6413, -73.7781],
