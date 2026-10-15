@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NYC · Manuel & Manu</title>
+<meta name="description" content="Itinerario de Nueva York, 15–19 de octubre de 2026.">
+<meta name="theme-color" content="#0c0e13">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗽</text></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Nueva <span>York</span></h1>
+    <p id="subtitle"></p>
+    <div class="hero-meta" id="heroMeta"></div>
+  </div>
+</header>
+
+<nav class="daybar">
+  <div class="daybar-inner" id="daybar"></div>
+</nav>
+
+<main class="wrap">
+  <div class="map-col">
+    <div id="map"></div>
+  </div>
+
+  <div class="list-col">
+    <div class="day-head">
+      <h2 id="dayTitle"></h2>
+      <p id="dayNote"></p>
+      <div class="progress"><i id="progressBar"></i></div>
+      <div class="progress-label" id="progressLabel"></div>
+    </div>
+    <div class="stops" id="stops"></div>
+  </div>
+</main>
+
+<section class="section">
+  <h2>Vuelos del lunes</h2>
+  <div class="flights" id="flights"></div>
+</section>
+
+<section class="section">
+  <h2>Lo que hay que saber</h2>
+  <div class="cards" id="essentials"></div>
+</section>
+
+<footer>
+  Hecho para el viaje de Manuel y Manu · Los horarios son orientativos, el orden de las paradas no.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
