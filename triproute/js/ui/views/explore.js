@@ -19,6 +19,9 @@ let googleResults = [];
 let mapApi = null;
 let listHost = null;
 let countHost = null;
+let chipHost = null;
+let provinceSel = null;
+let typeSel = null;
 
 export function render(host) {
   host.innerHTML = "";
@@ -29,6 +32,14 @@ export function render(host) {
     oninput: debounce((e) => { filters.q = e.target.value; refresh(); }, 180)
   });
 
+  provinceSel = select([["", "Todas las provincias"], ...PROVINCES.map((p) => [p, p])], filters.province,
+    (v) => { filters.province = v; refresh(); });
+  provinceSel.setAttribute("aria-label", "Filtrar por provincia");
+
+  typeSel = select([["", "Todas las categorías"], ...Object.entries(TYPES).map(([k, v]) => [k, `${v.emoji} ${v.label}`])],
+    filters.type, (v) => { filters.type = v; refresh(); });
+  typeSel.setAttribute("aria-label", "Filtrar por categoría");
+
   const bar = el("div", { class: "card filterbar" }, [
     el("div", { class: "input-row" }, [
       search,
@@ -36,16 +47,13 @@ export function render(host) {
         ? el("button", { class: "btn btn-ghost btn-sm", text: "Google", onclick: () => runGoogle(search.value) })
         : null
     ]),
-    el("div", { class: "input-row" }, [
-      select([["", "Todas las provincias"], ...PROVINCES.map((p) => [p, p])], filters.province,
-        (v) => { filters.province = v; refresh(); }),
-      select([["", "Todas las categorías"], ...Object.entries(TYPES).map(([k, v]) => [k, `${v.emoji} ${v.label}`])],
-        filters.type, (v) => { filters.type = v; refresh(); })
-    ]),
-    el("div", { class: "chiprow" }, [
-      chip("Todo el país", filters.region === "", () => { filters.region = ""; refresh(); }),
-      ...REGION_LIST.map((r) => chip(r.label, filters.region === r.id, () => { filters.region = r.id; refresh(); })),
-      chip("Solo mi selección", filters.onlyPicked, () => { filters.onlyPicked = !filters.onlyPicked; refresh(); }, "alt")
+    el("div", { class: "input-row" }, [provinceSel, typeSel]),
+    chipHost = el("div", { class: "chiprow" }, [
+      chip("Todo el país", filters.region === "", () => { filters.region = ""; refresh(); }, { region: "" }),
+      ...REGION_LIST.map((r) =>
+        chip(r.label, filters.region === r.id, () => { filters.region = r.id; refresh(); }, { region: r.id })),
+      chip("Solo mi selección", filters.onlyPicked, () => { filters.onlyPicked = !filters.onlyPicked; refresh(); },
+        { kind: "alt", toggle: "picked" })
     ])
   ]);
   host.append(bar);
@@ -76,9 +84,11 @@ export function render(host) {
   refresh();
 }
 
-function chip(label, active, onClick, kind = "") {
+function chip(label, active, onClick, { kind = "", region, toggle } = {}) {
   return el("button", {
     class: `chip chip-btn ${active ? "is-on" : ""} ${kind === "alt" ? "is-alt" : ""}`,
+    "aria-pressed": active ? "true" : "false",
+    dataset: toggle ? { toggle } : { region: region ?? "" },
     onclick: onClick, text: label
   });
 }
@@ -115,8 +125,24 @@ export function refresh({ fit = false } = {}) {
   googleResults.forEach((r) => listHost.append(googleCard(r)));
   shown.forEach((p) => listHost.append(placeCard(p)));
 
+  paintFilters();
   paintCount();
   paintMarkers({ fit });
+}
+
+/* Los controles se pintan una vez y la lista se refresca muchas: hay que
+   volver a marcar cuál está activo o se quedan con el aspecto inicial. */
+function paintFilters() {
+  if (provinceSel) provinceSel.value = filters.province;
+  if (typeSel) typeSel.value = filters.type;
+  if (!chipHost) return;
+  chipHost.querySelectorAll(".chip-btn").forEach((b) => {
+    const on = b.dataset.toggle === "picked"
+      ? filters.onlyPicked
+      : filters.region === (b.dataset.region || "");
+    b.classList.toggle("is-on", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
 }
 
 function paintCount() {
@@ -205,7 +231,9 @@ function placeCard(p) {
         e.stopPropagation();
         if (isPicked(p.id)) { unpickPlace(p.id); toast(`${p.name} fuera del viaje`); }
         else { pickPlace(p.id); ok(`${p.name} agregado`); }
-        syncPicked();
+        // Con el filtro de "solo mi selección" puesto, lo que acabas de quitar
+        // ya no pertenece a la lista: ahí sí toca reconstruirla.
+        if (filters.onlyPicked) refresh(); else syncPicked();
       },
       text: picked ? "✓" : "+"
     })
@@ -317,5 +345,5 @@ function openMapPointSheet(pos) {
 
 export default {
   id: "explore", label: "Lugares", icon: "🗺️", render,
-  onLeave() { mapApi = null; listHost = null; }
+  onLeave() { mapApi = null; listHost = null; chipHost = null; provinceSel = null; typeSel = null; }
 };
