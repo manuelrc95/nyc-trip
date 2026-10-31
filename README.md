@@ -23,3 +23,18 @@ Y abrir <http://localhost:4173>.
 ## Cambiar el itinerario
 
 Todo el contenido está en [`js/data.js`](js/data.js). Cada parada lleva hora, categoría, coste, coordenadas y el texto que se busca en Google Maps. No hace falta tocar el HTML ni el JavaScript para añadir o mover paradas.
+
+---
+
+## TripRoute RD
+
+En [`triproute/`](triproute/) vive una segunda aplicación, independiente de esta:
+un planificador de viajes por República Dominicana (elegir lugares en el mapa,
+repartirlos por días, horarios, presupuesto y resumen para compartir). No comparte
+código ni datos con el itinerario de Nueva York.
+
+```bash
+cd triproute && python3 -m http.server 4173
+```
+
+Las instrucciones completas están en [`triproute/README.md`](triproute/README.md).

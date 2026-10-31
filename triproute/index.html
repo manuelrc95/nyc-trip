@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TripRoute RD · Asistente de viajes</title>
+<meta name="description" content="Planifica viajes por República Dominicana: lugares en el mapa, itinerario optimizado por días, horarios, tips y presupuesto.">
+
+<!-- PWA / iOS -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0ea5e9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TripRoute RD">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+<header class="app-head">
+  <div class="app-head-inner">
+    <div>
+      <h1 class="app-title">TripRoute <span>RD</span></h1>
+      <p class="app-sub" id="app-sub">Asistente de viajes por República Dominicana</p>
+    </div>
+    <button id="btn-settings" class="icon-btn" aria-label="Ajustes" title="Ajustes">⚙️</button>
+  </div>
+</header>
+
+<main id="view" class="view" aria-live="polite"></main>
+
+<nav id="tabbar" class="tabbar" aria-label="Secciones"></nav>
+
+<!-- El mapa vive aquí cuando no está dentro de una vista, para no recrearlo. -->
+<div id="map-parking" hidden></div>
+
+<!-- Hoja que se manda a imprimir / guardar como PDF. -->
+<div id="print-root" aria-hidden="true"></div>
+
+<noscript>
+  <p style="padding:24px;font:16px -apple-system,system-ui,sans-serif">
+    TripRoute RD necesita JavaScript activado.
+  </p>
+</noscript>
+
+<script src="vendor/leaflet/leaflet.js" defer></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
